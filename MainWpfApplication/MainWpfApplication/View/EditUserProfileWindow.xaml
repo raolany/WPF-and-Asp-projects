@@ -1,0 +1,104 @@
+﻿<Window x:Class="MainWpfApplication.View.EditUserProfileWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MainWpfApplication.View"
+        mc:Ignorable="d"
+        Title="EditUserProfileWindow" Height="300" Width="300">
+    <Window.Resources>
+        <!--<ControlTemplate x:Key="ValidationFailed">
+            <StackPanel Orientation="Horizontal">
+                <Border BorderBrush="blue" BorderThickness="2">
+                    <AdornedElementPlaceholder />
+                </Border>
+                <TextBlock Foreground="Blue" FontSize="16" FontWeight="Bold">!</TextBlock>
+            </StackPanel>
+        </ControlTemplate>-->
+
+        <Style TargetType="TextBlock">
+            <Setter Property="FontWeight" Value="Medium"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Padding" Value="4"/>
+        </Style>
+        
+        <Style TargetType="TextBox">
+            <Setter Property="Margin" Value="1"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="True">
+                    <Setter Property="ToolTip"
+                        Value="{Binding RelativeSource={RelativeSource Self},
+                                Path=(Validation.Errors)[0].ErrorContent}" />
+                    <Setter Property="Foreground" Value="Red" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        
+    </Window.Resources>
+    <Grid >
+        <Grid.Background>
+            <LinearGradientBrush>
+                <GradientBrush.GradientStops>
+                    <GradientStopCollection>
+                        <GradientStop Color="OldLace" Offset="0.0"/>
+                        <GradientStop Color="CornflowerBlue" Offset="1"/>
+                    </GradientStopCollection>
+                </GradientBrush.GradientStops>
+            </LinearGradientBrush>
+        </Grid.Background>
+        
+        <Grid Margin="5">
+            <Grid Name="MainGrid">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="Name : "/>
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="Surname : "/>
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="PatronymicName : "/>
+            <TextBlock Grid.Row="3" Grid.Column="0" Text="Age : "/>
+            <TextBlock Grid.Row="4" Grid.Column="0" Text="City : "/>
+            <TextBlock Grid.Row="5" Grid.Column="0" Text="Adress : "/>
+            <TextBlock Grid.Row="6" Grid.Column="0" Text="Gender : "/>
+            <TextBlock Grid.Row="7" Grid.Column="0" Text="Phone : "/>
+            <TextBlock Grid.Row="8" Grid.Column="0" Text="Mail : "/>
+
+            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Path=Name, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Path=Surname, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Path=PatronymicName, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Path=Age, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding Path=City, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding Path=Address, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"/>
+            <ComboBox Grid.Row="6" Grid.Column="1" Name="Gender" SelectionChanged="GenderOnSelectionChanged">
+                <ComboBoxItem Content="Male" IsSelected="True"/>
+                <ComboBoxItem Content="Female"/>
+            </ComboBox>
+            <TextBox Grid.Row="7" Grid.Column="1" Text="{Binding Path=Phone, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox Grid.Row="8" Grid.Column="1" Text="{Binding Path=Mail, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"/>
+            </Grid>
+            
+            <StackPanel  Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Bottom"
+                        Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 5 0 0">
+                <Button Name="SaveBtn" Margin="5 0 5 0" Padding="10 5 10 5" Content="Save" Click="BtnSaveOnClick"/>
+                <Button Name="SendMsgBtn" Margin="0 0 5 0" Padding="10 5 10 5" Content="Send msg" Visibility="Collapsed" Click="SendMsgBtnOnClick"/>
+                <Button Name="CancelBtn" Padding="10 5 10 5" Content="Cancel" Click="BtnCancelOnClick"/>
+            </StackPanel>
+
+        </Grid>
+    </Grid>
+</Window>

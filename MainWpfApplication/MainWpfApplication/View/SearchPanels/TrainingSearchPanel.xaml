@@ -1,0 +1,31 @@
+﻿<Page x:Class="MainWpfApplication.View.SearchPanels.TrainingSearchPanel"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MainWpfApplication.View.SearchPanels"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+      Title="TrainingSearchPanel">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Text="Training time" />
+        <TextBox Grid.Row="1" Name="TimeTb" PreviewTextInput="DigitPreviewTextInput"/>
+
+        <TextBlock Grid.Row="2" Text="Price"/>
+        <TextBox Grid.Row="3" Name="PriceTb" PreviewTextInput="PriceDigitPreviewTextInput"/>
+
+        <TextBlock Grid.Row="4" Text="Min age"/>
+        <TextBox Grid.Row="5" Name="MinageTb" PreviewTextInput="DigitPreviewTextInput"/>
+    </Grid>
+</Page>

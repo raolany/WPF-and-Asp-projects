@@ -1,0 +1,35 @@
+﻿<Window x:Class="MainWpfApplication.View.VerificationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MainWpfApplication.View"
+        mc:Ignorable="d"
+        Title="Verification Window" MinHeight="140" MinWidth="350" MaxHeight="140" MaxWidth="350">
+    <Grid Margin="5">
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Label Grid.Row="0" Grid.Column="0" Content="Login : "/>
+        <Label Grid.Row="1" Grid.Column="0" Content="Password : "/>
+
+        <TextBox Margin="1" Grid.Row="0" Grid.Column="1" ToolTip="Login" Name="Login"/>
+        <TextBox Margin="1" Grid.Row="1" Grid.Column="1" ToolTip="Password" Name="Password"/>
+
+        <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="5">
+            <Button Margin="0 5 5 5" Padding="10 5 10 5"  Content="Login" Click="BtnLoginOnClick"/>
+            <Button Margin="0 5 5 5" Padding="10 5 10 5"  Content="Register" Click="BtnRegisterOnClick"/>
+            <Button Margin="0 5 -5 5" Padding="10 5 10 5" Content="Cancel" Click="BtnCancelOnClick"/>
+        </StackPanel>
+
+    </Grid>
+</Window>

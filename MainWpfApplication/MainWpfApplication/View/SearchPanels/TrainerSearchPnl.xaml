@@ -1,0 +1,36 @@
+﻿<Page x:Class="MainWpfApplication.View.SearchPanels.TrainerSearchPnl"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MainWpfApplication.View.SearchPanels"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+      Title="TrainerSearchPnl" WindowTitle="TrainerSearchPnl">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <TextBlock Grid.Row="0" Text="Age" />
+        <TextBox Grid.Row="1" Name="AgeTb" PreviewTextInput="DigitPreviewTextInput"/>
+
+        <TextBlock Grid.Row="2" Text="City"/>
+        <TextBox Grid.Row="3" Name="CityTb"  PreviewTextInput="TextOnPreviewTextInput"/>
+        
+        <TextBlock Grid.Row="4" Text="Gender"/>
+        <StackPanel Grid.Row="5">
+            <RadioButton GroupName="Gender" Content="Male" Name="Male"/>
+            <RadioButton GroupName="Gender" Content="Female" Name="Female"/>
+            <RadioButton GroupName="Gender" Content="Any" IsChecked="True"/>
+        </StackPanel>
+
+    </Grid>
+</Page>

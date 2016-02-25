@@ -1,0 +1,5 @@
+F:\Study\EPAM\MainWpfApplication\Data\bin\Debug\Data.dll
+F:\Study\EPAM\MainWpfApplication\Data\bin\Debug\Data.pdb
+F:\Study\EPAM\MainWpfApplication\Data\obj\Debug\Data.dll
+F:\Study\EPAM\MainWpfApplication\Data\obj\Debug\Data.pdb
+F:\Study\EPAM\MainWpfApplication\Data\obj\Debug\Data.csprojResolveAssemblyReference.cache
