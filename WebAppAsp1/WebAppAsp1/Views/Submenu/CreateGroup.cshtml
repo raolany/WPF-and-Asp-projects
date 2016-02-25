@@ -1,0 +1,82 @@
+﻿@using WebAppAsp1.Models.EntetiesModel
+@model WebAppAsp1.Models.EntetiesModel.GroupModel
+
+@{
+    string mode = TempData["mode"].ToString();
+    if (mode == "create")
+    {
+        ViewBag.Title = "Create Group";
+        ViewData["heading"] = "create group";
+        ViewData["btn"] = "Create";
+    }
+    if (mode == "edit")
+    {
+        ViewBag.Title = "Edit Group";
+        ViewData["heading"] = "edit group";
+        ViewData["btn"] = "Save";
+    }
+    var list = Model.AllTrainings;
+}
+
+@if (list == null)
+{
+    <p>Для того чтобы создать группу у вас должна быть созданна хотябы 1 тренеровка. @Html.ActionLink("Create training", "CreateTraining", "Submenu")</p>
+}
+else
+{
+    using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>Group</h4>
+            <hr/>
+            @Html.ValidationSummary(true, "", new {@class = "text-danger"})
+            <div class="form-group">
+                @Html.LabelFor(model => model.Name, htmlAttributes: new {@class = "control-label col-md-2"})
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Name, new {htmlAttributes = new {@class = "form-control"}})
+                    @Html.ValidationMessageFor(model => model.Name, "", new {@class = "text-danger"})
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Training, htmlAttributes: new {@class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(x => x.SelectedTraining, new SelectList(Model.AllTrainings, "Id", "Name"), "Please Select a training", new {@class="dropdown"})
+                    @Html.ValidationMessageFor(model => model.SelectedTraining, "", new {@class = "text-danger"})
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Clientmax, htmlAttributes: new {@class = "control-label col-md-2"})
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Clientmax, new {htmlAttributes = new {@class = "form-control"}})
+                    @Html.ValidationMessageFor(model => model.Clientmax, "", new {@class = "text-danger"})
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Description, htmlAttributes: new {@class = "control-label col-md-2"})
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.Description, 5, 70, new {htmlAttributes = new {@class = "form-control"}})
+                    @Html.ValidationMessageFor(model => model.Description, "", new {@class = "text-danger"})
+                </div>
+            </div>
+
+            @if (mode == "edit")
+            {
+                <div class="collapse">
+                    <input name="id" value="@Model.Id" />
+                </div>
+            }
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="@ViewData["btn"]" class="btn btn-primary"/>
+                    <a class="btn btn-primary" href="/Submenu/Groups?type=mygroups">Back</a>
+                </div>
+            </div>
+        </div>
+    }
+}

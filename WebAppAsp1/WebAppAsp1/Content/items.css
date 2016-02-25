@@ -1,0 +1,16 @@
+﻿.trainings_container .list-group-item,.groups_container .list-group-item {
+    margin-bottom: 2px;
+    /*opacity: 0.7;*/
+    /*background: url(../img/training_bg.jpg) no-repeat center center;*/
+    /*background-size: cover;*/
+}
+
+.training_container { }
+.group_container { }
+.training_edit { height: 15px;}
+.group_edit { height: 15px;}
+
+.display {
+    background: transparent;
+}
+

@@ -1,0 +1,61 @@
+﻿@model WebAppAsp1.Models.EntetiesModel.GroupModel
+
+@{
+    ViewBag.Title = "Group";
+    ViewData["heading"] = "group info";
+}
+
+<div>
+    <h4>Group</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TrainerName)
+        </dt>
+
+        <dd>
+            <a href="/Submenu/Trainer?id=@Model.Trainer">@Html.DisplayFor(model => model.TrainerName)</a>
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TrainingName)
+        </dt>
+
+        <dd>
+            <a href="/Submenu/Training?id=@Model.Training">@Html.DisplayFor(model => model.TrainingName)</a>
+        </dd>
+
+        <dt>
+            Clients
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Clientsnow)/@Html.DisplayFor(model => model.Clientmax)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+    </dl>
+
+    @if (User.IsInRole("Client"))
+    {
+        <div>
+            <a class="btn btn-primary" href="/Submenu/Subscribe?id=@Model.Trainer&obj=@Model.Id&type=group">Subscribe</a>
+        </div>
+    }
+</div>
+
