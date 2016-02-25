@@ -98,19 +98,6 @@ namespace MainWpfApplication.DL
             return 0;
         }
 
-        //отримати ідентифікатори об’єктів з БД, що задовольняють запиту
-        //public DataRowCollection GetIds(string query)
-        //{
-        //    _cmd.CommandText = "select ID from Voll_" + Table.TableName + ((query == null) ? "" : " where " + query);
-        //    try
-        //    {
-        //        _da.Fill(_temp);
-        //        return _temp.Rows;
-        //    }
-        //    catch { MessageBox.Show("Відбувся запит до таблиці SB_" + Table.TableName + ((query == null) ? "" : " where ") + query + Environment.NewLine + "Таблицю не знайдено!!!", "Помилка БД...", MessageBoxButtons.OK, MessageBoxIcon.Error); }
-        //    return null;
-        //}
-
         public int Update(DataRow dr) { return _da.Update(new DataRow[] { dr }); }
 
         public int Update(DataRow[] drs) { return _da.Update(drs); }
