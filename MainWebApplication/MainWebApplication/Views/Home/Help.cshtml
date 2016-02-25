@@ -1,0 +1,15 @@
+﻿
+@{
+    ViewBag.Title = "Help";
+    ViewData["heading"] = "Help";
+    ViewData["HelpActive"] = "active";
+}
+
+<h3>@ViewBag.Message</h3>
+
+<form name="search" action="#" method="get" class="">
+    <input type="text" class="form-control form-group" placeholder="Contact email">
+    <textarea class="form-control form-group" placeholder="Write about your problem" rows="3"></textarea>
+    <input class="btn btn-success" type="submit" value="Send">
+</form>
+

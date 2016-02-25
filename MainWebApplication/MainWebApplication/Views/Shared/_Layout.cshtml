@@ -1,0 +1,126 @@
+﻿@using System.Web.UI.WebControls
+@if (Request.IsAuthenticated)
+{
+    ViewData["SubMenuVisible"] = "visible";
+    ViewData["SubMenuClass"] = "col-md-3";
+    ViewData["RenderBodyClass"] = "col-md-9";
+}
+else
+{
+    ViewData["SubMenuVisible"] = "collapse";
+    ViewData["RenderBodyClass"] = "col-md-12";
+    ViewData["SubMenuClass"] = "collapse";
+}
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <div class="col-md-6">
+            @Html.ActionLink("My project logo", "Index", "Home")
+        </div>
+        <div class="col-md-6">
+            <div class="row pull-right">
+                @Html.Partial("_LoginPartial")
+                <form name="search" action="#" method="get" class="form-inline form-search ">
+                    <div class="input-group">
+                        <label class="sr-only" for="searchInput">Search</label>
+                        <input class="form-control" id="searchInput" type="text" name="search" placeholder="Search">
+                        <div class="input-group-btn">
+                            <button type="submit" class="btn btn-success">GO</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</header>
+
+<nav class="nav">
+    <div class="container">
+        <ul class="nav nav-tabs nav-justified">
+            <li role="presentation" class="@ViewData["HomeActive"]">@Html.ActionLink("Home", "Index", "Home")</li>
+            <li role="presentation" class="@ViewData["AboutActive"]">@Html.ActionLink("About", "About", "Home")</li>
+            <li role="presentation" class="@ViewData["ContactActive"]">@Html.ActionLink("Contact", "Contact", "Home")</li>
+            <li role="presentation" class="@ViewData["HelpActive"]">@Html.ActionLink("Help", "Help", "Home")</li>
+        </ul>
+    </div>
+</nav>
+
+<div class="heading">
+    <div class="container">
+        <h1>@ViewData["heading"]</h1>
+    </div>
+</div>
+    
+<div class="container">
+        <aside id="aside" class="@ViewData["SubMenuClass"]" style="visibility: @ViewData["SubMenuVisible"]">
+            <ul class="list-group submenu">
+                <a class="@ViewData["ProfileActive"] list-group-item" href="/Submenu/Profile">My profile</a>
+                <a class="list-group-item">Trainings</a>
+                <a class="list-group-item">Groups</a>
+                <a class="list-group-item">Messages<span class="badge">42</span></a>
+                <a class="list-group-item">Notifications<span class="badge">14</span></a>
+                <a class="list-group-item">Search</a>
+            </ul>
+        </aside>
+        <section id="renderbody" class="@ViewData["RenderBodyClass"]">
+
+            @RenderBody()
+
+        </section>
+</div>
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 sitemap">
+                <h3>Sitemap</h3>
+                <div class="row">
+                    <div class="col-md-4">
+                        <a href="">@Html.ActionLink("Home", "Index", "Home")</a>
+                        <a href="">@Html.ActionLink("About", "About", "Home")</a>
+                        <a href="">@Html.ActionLink("Contact", "Contact", "Home")</a>
+                        <a href="">@Html.ActionLink("Help", "Help", "Home")</a>
+                    </div>
+                    <div class="col-md-4">
+                        <a href="">My profile</a>
+                        <a href="">Trainings</a>
+                        <a href="">Groups</a>
+                    </div>
+                    <div class="col-md-4">
+                        <a href="">Messages</a>
+                        <a href="">Notifications</a>
+                        <a href="">Search</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-md-offset-4 footer-logo ">
+                <a href="/"><img src="" alt="Mt project logo"></a>
+                <p>
+                    Copyright © @DateTime.Now.Year My project. <a href="">Andrey Rack</a> creation
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@Scripts.Render("~/bundles/modernizr")
+
+</body>
+</html>

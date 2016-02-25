@@ -1,0 +1,506 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MyApplicationModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="C__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+    <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetRoles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaims">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogins">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUsers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+    <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+    <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+    <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+    <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+    <NavigationProperty Name="User" Relationship="Self.UserConnection" FromRole="AspNetUsers" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Client">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Guid" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="surname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="patronymicname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="age" Type="Int32" Nullable="false" />
+    <Property Name="gender" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="city" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="phone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="mail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="GroupClient" Relationship="Self.FK_GroupClient_Client" FromRole="Client" ToRole="GroupClient" />
+    <NavigationProperty Name="TrainerClient" Relationship="Self.FK_TrainerClient_Client" FromRole="Client" ToRole="TrainerClient" />
+    <NavigationProperty Name="TrainingClient" Relationship="Self.FK_TrainingClient_Client" FromRole="Client" ToRole="TrainingClient" />
+    <NavigationProperty Name="User" Relationship="Self.FK_User_Client" FromRole="Client" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Group">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Guid" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="trainer" Type="Guid" Nullable="false" />
+    <Property Name="training" Type="Guid" Nullable="false" />
+    <Property Name="clientmax" Type="Int32" Nullable="false" />
+    <Property Name="clientsnow" Type="Int32" Nullable="false" />
+    <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Trainer1" Relationship="Self.FK_Group_Trainer" FromRole="Group" ToRole="Trainer" />
+    <NavigationProperty Name="Training1" Relationship="Self.FK_Group_Training" FromRole="Group" ToRole="Training" />
+    <NavigationProperty Name="GroupClient" Relationship="Self.FK_GroupClient_Group" FromRole="Group" ToRole="GroupClient" />
+  </EntityType>
+  <EntityType Name="GroupClient">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Guid" Nullable="false" />
+    <Property Name="groupid" Type="Guid" Nullable="false" />
+    <Property Name="clientid" Type="Guid" Nullable="false" />
+    <NavigationProperty Name="Client" Relationship="Self.FK_GroupClient_Client" FromRole="GroupClient" ToRole="Client" />
+    <NavigationProperty Name="Group" Relationship="Self.FK_GroupClient_Group" FromRole="GroupClient" ToRole="Group" />
+  </EntityType>
+  <EntityType Name="Notification">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Guid" Nullable="false" />
+    <Property Name="type" Type="Guid" Nullable="false" />
+    <Property Name="msg" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="status" Type="Boolean" Nullable="false" />
+    <Property Name="sender" Type="Guid" Nullable="false" />
+    <Property Name="receiver" Type="Guid" Nullable="false" />
+    <Property Name="time" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="trainingid" Type="Guid" />
+    <Property Name="groupid" Type="Guid" />
+    <NavigationProperty Name="Notificationtype" Relationship="Self.FK_Notification_Notificationtype" FromRole="Notification" ToRole="Notificationtype" />
+    <NavigationProperty Name="User" Relationship="Self.FK_NotificationReceiver_User" FromRole="Notification" ToRole="User" />
+    <NavigationProperty Name="User1" Relationship="Self.FK_NotificationSender_User" FromRole="Notification" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Notificationtype">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Guid" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="value" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Notification" Relationship="Self.FK_Notification_Notificationtype" FromRole="Notificationtype" ToRole="Notification" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Trainer">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Guid" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="surname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="patronymicname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="age" Type="Int32" Nullable="false" />
+    <Property Name="gender" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="city" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="phone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="mail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Group" Relationship="Self.FK_Group_Trainer" FromRole="Trainer" ToRole="Group" />
+    <NavigationProperty Name="TrainerClient" Relationship="Self.FK_TrainerClient_Trainer" FromRole="Trainer" ToRole="TrainerClient" />
+    <NavigationProperty Name="Training" Relationship="Self.FK_Training_Trainer" FromRole="Trainer" ToRole="Training" />
+    <NavigationProperty Name="User" Relationship="Self.FK_User_Trainer" FromRole="Trainer" ToRole="User" />
+  </EntityType>
+  <EntityType Name="TrainerClient">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Guid" Nullable="false" />
+    <Property Name="trainer" Type="Guid" Nullable="false" />
+    <Property Name="client" Type="Guid" Nullable="false" />
+    <NavigationProperty Name="Client1" Relationship="Self.FK_TrainerClient_Client" FromRole="TrainerClient" ToRole="Client" />
+    <NavigationProperty Name="Trainer1" Relationship="Self.FK_TrainerClient_Trainer" FromRole="TrainerClient" ToRole="Trainer" />
+  </EntityType>
+  <EntityType Name="Training">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Guid" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="trainer" Type="Guid" Nullable="false" />
+    <Property Name="hours" Type="Int32" Nullable="false" />
+    <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="price" Type="Double" Nullable="false" />
+    <Property Name="minage" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Group" Relationship="Self.FK_Group_Training" FromRole="Training" ToRole="Group" />
+    <NavigationProperty Name="Trainer1" Relationship="Self.FK_Training_Trainer" FromRole="Training" ToRole="Trainer" />
+    <NavigationProperty Name="TrainingClient" Relationship="Self.FK_TrainingClient_Training" FromRole="Training" ToRole="TrainingClient" />
+  </EntityType>
+  <EntityType Name="TrainingClient">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Guid" Nullable="false" />
+    <Property Name="training" Type="Guid" Nullable="false" />
+    <Property Name="client" Type="Guid" Nullable="false" />
+    <NavigationProperty Name="Client1" Relationship="Self.FK_TrainingClient_Client" FromRole="TrainingClient" ToRole="Client" />
+    <NavigationProperty Name="Training1" Relationship="Self.FK_TrainingClient_Training" FromRole="TrainingClient" ToRole="Training" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Guid" Nullable="false" />
+    <Property Name="login" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="client" Type="Guid" />
+    <Property Name="trainer" Type="Guid" />
+    <NavigationProperty Name="Client1" Relationship="Self.FK_User_Client" FromRole="User" ToRole="Client" />
+    <NavigationProperty Name="Notification" Relationship="Self.FK_NotificationReceiver_User" FromRole="User" ToRole="Notification" />
+    <NavigationProperty Name="Notification1" Relationship="Self.FK_NotificationSender_User" FromRole="User" ToRole="Notification" />
+    <NavigationProperty Name="Trainer1" Relationship="Self.FK_User_Trainer" FromRole="User" ToRole="Trainer" />
+    <NavigationProperty Name="AspNetUsers" Relationship="Self.UserConnection" FromRole="User" ToRole="AspNetUsers" />
+  </EntityType>
+  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaims">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLogins">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GroupClient_Client">
+    <End Role="Client" Type="Self.Client" Multiplicity="1" />
+    <End Role="GroupClient" Type="Self.GroupClient" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="GroupClient">
+        <PropertyRef Name="clientid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TrainerClient_Client">
+    <End Role="Client" Type="Self.Client" Multiplicity="1" />
+    <End Role="TrainerClient" Type="Self.TrainerClient" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="TrainerClient">
+        <PropertyRef Name="client" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TrainingClient_Client">
+    <End Role="Client" Type="Self.Client" Multiplicity="1" />
+    <End Role="TrainingClient" Type="Self.TrainingClient" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="TrainingClient">
+        <PropertyRef Name="client" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Client">
+    <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="client" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Group_Trainer">
+    <End Role="Trainer" Type="Self.Trainer" Multiplicity="1" />
+    <End Role="Group" Type="Self.Group" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Trainer">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Group">
+        <PropertyRef Name="trainer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Group_Training">
+    <End Role="Training" Type="Self.Training" Multiplicity="1" />
+    <End Role="Group" Type="Self.Group" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Training">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Group">
+        <PropertyRef Name="training" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GroupClient_Group">
+    <End Role="Group" Type="Self.Group" Multiplicity="1" />
+    <End Role="GroupClient" Type="Self.GroupClient" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Group">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="GroupClient">
+        <PropertyRef Name="groupid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Notification_Notificationtype">
+    <End Role="Notificationtype" Type="Self.Notificationtype" Multiplicity="1" />
+    <End Role="Notification" Type="Self.Notification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Notificationtype">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Notification">
+        <PropertyRef Name="type" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NotificationReceiver_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Notification" Type="Self.Notification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Notification">
+        <PropertyRef Name="receiver" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NotificationSender_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Notification" Type="Self.Notification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Notification">
+        <PropertyRef Name="sender" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TrainerClient_Trainer">
+    <End Role="Trainer" Type="Self.Trainer" Multiplicity="1" />
+    <End Role="TrainerClient" Type="Self.TrainerClient" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Trainer">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="TrainerClient">
+        <PropertyRef Name="trainer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Training_Trainer">
+    <End Role="Trainer" Type="Self.Trainer" Multiplicity="1" />
+    <End Role="Training" Type="Self.Training" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Trainer">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Training">
+        <PropertyRef Name="trainer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Trainer">
+    <End Role="Trainer" Type="Self.Trainer" Multiplicity="0..1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Trainer">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="trainer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TrainingClient_Training">
+    <End Role="Training" Type="Self.Training" Multiplicity="1" />
+    <End Role="TrainingClient" Type="Self.TrainingClient" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Training">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="TrainingClient">
+        <PropertyRef Name="training" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AspNetUserRoles">
+    <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="*" />
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
+  </Association>
+  <Association Name="UserConnection">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="MyApplicationModelEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+    <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" />
+    <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" />
+    <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" />
+    <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" />
+    <EntitySet Name="Client" EntityType="Self.Client" />
+    <EntitySet Name="Group" EntityType="Self.Group" />
+    <EntitySet Name="GroupClient" EntityType="Self.GroupClient" />
+    <EntitySet Name="Notification" EntityType="Self.Notification" />
+    <EntitySet Name="Notificationtype" EntityType="Self.Notificationtype" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="Trainer" EntityType="Self.Trainer" />
+    <EntitySet Name="TrainerClient" EntityType="Self.TrainerClient" />
+    <EntitySet Name="Training" EntityType="Self.Training" />
+    <EntitySet Name="TrainingClient" EntityType="Self.TrainingClient" />
+    <EntitySet Name="User" EntityType="Self.User" />
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GroupClient_Client" Association="Self.FK_GroupClient_Client">
+      <End Role="Client" EntitySet="Client" />
+      <End Role="GroupClient" EntitySet="GroupClient" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TrainerClient_Client" Association="Self.FK_TrainerClient_Client">
+      <End Role="Client" EntitySet="Client" />
+      <End Role="TrainerClient" EntitySet="TrainerClient" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TrainingClient_Client" Association="Self.FK_TrainingClient_Client">
+      <End Role="Client" EntitySet="Client" />
+      <End Role="TrainingClient" EntitySet="TrainingClient" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Client" Association="Self.FK_User_Client">
+      <End Role="Client" EntitySet="Client" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Group_Trainer" Association="Self.FK_Group_Trainer">
+      <End Role="Trainer" EntitySet="Trainer" />
+      <End Role="Group" EntitySet="Group" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Group_Training" Association="Self.FK_Group_Training">
+      <End Role="Training" EntitySet="Training" />
+      <End Role="Group" EntitySet="Group" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GroupClient_Group" Association="Self.FK_GroupClient_Group">
+      <End Role="Group" EntitySet="Group" />
+      <End Role="GroupClient" EntitySet="GroupClient" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Notification_Notificationtype" Association="Self.FK_Notification_Notificationtype">
+      <End Role="Notificationtype" EntitySet="Notificationtype" />
+      <End Role="Notification" EntitySet="Notification" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NotificationReceiver_User" Association="Self.FK_NotificationReceiver_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Notification" EntitySet="Notification" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NotificationSender_User" Association="Self.FK_NotificationSender_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Notification" EntitySet="Notification" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TrainerClient_Trainer" Association="Self.FK_TrainerClient_Trainer">
+      <End Role="Trainer" EntitySet="Trainer" />
+      <End Role="TrainerClient" EntitySet="TrainerClient" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Training_Trainer" Association="Self.FK_Training_Trainer">
+      <End Role="Trainer" EntitySet="Trainer" />
+      <End Role="Training" EntitySet="Training" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Trainer" Association="Self.FK_User_Trainer">
+      <End Role="Trainer" EntitySet="Trainer" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TrainingClient_Training" Association="Self.FK_TrainingClient_Training">
+      <End Role="Training" EntitySet="Training" />
+      <End Role="TrainingClient" EntitySet="TrainingClient" />
+    </AssociationSet>
+    <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
+      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+    </AssociationSet>
+    <AssociationSet Name="UserConnection" Association="Self.UserConnection">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

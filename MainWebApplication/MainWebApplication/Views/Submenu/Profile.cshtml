@@ -1,0 +1,70 @@
+﻿
+@{
+    ViewBag.Title = "My profile";
+    ViewData["heading"] = "Profile";
+    ViewData["ProfileActive"] = "active";
+    if(User.IsInRole("Trainer"))
+    {
+        ViewData["AccountType"] = "Trainer";
+    }
+    else if (User.IsInRole("Client"))
+    {
+        ViewData["AccountType"] = "Client";
+    }
+    else if (User.IsInRole("Admin"))
+    {
+        ViewData["AccountType"] = "Admin";
+    }
+    else
+    {
+        ViewData["AccountType"] = "No role";
+    }
+}
+
+@Styles.Render("~/Content/Profile")
+
+<table class="table table-striped">
+    <tr>
+        <td>Account type: </td>
+        <td>@ViewData["AccountType"]</td>
+    </tr>
+    <tr>
+        <td>Name: </td>
+        <td>@Model.Name</td>
+    </tr>
+    <tr>
+        <td>Surname: </td>
+        <td>@Model.Name</td>
+    </tr>
+    <tr>
+        <td>Patronymic name: </td>
+        <td>@Model.Patronymicname</td>
+    </tr>
+    <tr>
+        <td>Gender:</td>
+        <td>@Model.Gender</td>
+    </tr>
+    <tr>
+        <td>Age:</td>
+        <td>@Model.Age</td>
+    </tr>
+    <tr>
+        <td>City:</td>
+        <td>@Model.City</td>
+    </tr>
+    <tr>
+        <td>Address:</td>
+        <td>@Model.Address</td>
+    </tr>
+    <tr>
+        <td>Phone:</td>
+        <td>@Model.Phone</td>
+    </tr>
+    <tr>
+        <td>Mail:</td>
+        <td>@Model.Mail</td>
+    </tr>
+
+</table>
+
+<button class="btn btn-primary">Edit</button>
