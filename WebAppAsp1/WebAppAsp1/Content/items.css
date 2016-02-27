@@ -1,8 +1,6 @@
-﻿.trainings_container .list-group-item,.groups_container .list-group-item {
+﻿.trainings_container .list-group-item,.groups_container .list-group-item, .messages_container .list-group-item{
     margin-bottom: 2px;
-    /*opacity: 0.7;*/
-    /*background: url(../img/training_bg.jpg) no-repeat center center;*/
-    /*background-size: cover;*/
+    cursor: pointer;
 }
 
 .training_container { }
@@ -13,4 +11,6 @@
 .display {
     background: transparent;
 }
-
+.msg-read {
+    background: #bcc8c9;
+}

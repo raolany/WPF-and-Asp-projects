@@ -64,7 +64,8 @@ namespace WebAppAsp1.Models.EntetiesModel
                 Sender = sender,
                 Status = false,
                 Time = DateTime.Now.ToString("hh:mm:ss tt dd-MMMM-yyyy", CultureInfo.InvariantCulture),
-                Receiver = receiver
+                Receiver = receiver,
+                Sended = false
             };
 
             return ntf;

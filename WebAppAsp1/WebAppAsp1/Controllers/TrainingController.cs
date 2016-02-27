@@ -23,7 +23,21 @@ namespace WebAppAsp1.Controllers
             if (type == "mytrainings")
             {
                 ViewData["my"] = "active";
-                trainings = User.IsInRole("Trainer") ? db.Training.Where(t => (t.Trainer == user.Trainer)) : db.Training.Where(t => (t.Trainer == user.Client));
+                //trainings = User.IsInRole("Trainer") ? db.Training.Where(t => (t.Trainer == user.Trainer)) : db.Training.Where(t => (t.Trainer == user.Client));
+                if (User.IsInRole("Trainer"))
+                {
+                    trainings = db.Training.Where(t => (t.Trainer == user.Trainer)); 
+                }
+                else
+                {
+                    var tmp = db.TrainingClient.Where(tc => (tc.Client == user.Client));
+                    var lst = new List<Training>();
+                    foreach (TrainingClient trcl in tmp)
+                    {
+                        lst.Add(db.Training.First(t => t.Id == trcl.Training));
+                    }
+                    trainings = lst;
+                }
             }
             else if (type == "alltrainings")
             {

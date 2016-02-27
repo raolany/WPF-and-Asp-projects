@@ -27,5 +27,7 @@ namespace WebAppAsp1.Models.Entities
         public Guid? Trainingid { get; set; }
 
         public Guid? Groupid { get; set; }
+
+        public bool Sended { get; set; }
     }
 }

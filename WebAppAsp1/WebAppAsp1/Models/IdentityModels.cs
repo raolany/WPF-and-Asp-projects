@@ -39,5 +39,7 @@ namespace WebAppAsp1.Models
         public virtual DbSet<Group> Group { get; set; }
         public virtual DbSet<Notification> Notification { get; set; }
         public virtual DbSet<Notificationtype> NotificationType { get; set; }
+        public virtual DbSet<TrainingClient> TrainingClient { get; set; }
+        public virtual DbSet<GroupClient> GroupClient { get; set; }
     }
 }

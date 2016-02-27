@@ -16,13 +16,22 @@ else
     <div class="list-group messages_container">
         @foreach (var item in Model)
         {
-            <div class="list-group-item message_container">
+            if (item.Status)
+            {
+                ViewData["status"] = "msg-read";
+            }
+            else
+            {
+                ViewData["status"] = "";
+            }
+            <div class="list-group-item message_container @ViewData["status"]" id="@item.Id" @*onclick="readMsg('@item.Id')"*@>
                 @if (item.Type == "Message")
                 {
                     <div class="row">
                         <h4 class="list-group-item-heading col-md-6">
                             Message <small>from</small> <a href="/Profile/Trainer?id=@item.Sender">@Html.DisplayFor(modelItem => item.SenderName)</a>
-                            <p><small>@Html.DisplayFor(modelItem => item.Time)</small></p>
+                            <p><small>@Html.DisplayFor(modelItem => item.Time)</small>
+                            </p>
                         </h4>
                         <div class="col-md-6">
                             <div>
@@ -67,17 +76,30 @@ else
                     <div class="row">
                         <h4 class="list-group-item-heading col-md-6">
                             Notification <small>from</small> <a href="">@Html.DisplayFor(modelItem => item.SenderName)</a>
-                            <p><small>@Html.DisplayFor(modelItem => item.Time)</small></p>
+                            <p>
+                                <small>@Html.DisplayFor(modelItem => item.Time)</small>
+                            </p>
                         </h4>
-                        <div class="col-md-6 text-right btn_answer hide">
-                            <a class="btn btn-primary" href="Message/Accept?model=@item">Accept</a>
-                            <a class="btn btn-primary">No</a>
-                        </div>
+                        @if (User.IsInRole("Trainer") && !item.Status)
+                        {
+                            <div class="col-md-6 text-right btn_answer hide">
+                                @if (item.Trainingid != Guid.Empty)
+                                {
+                                    <a class="btn btn-primary" href="AcceptTrainingSubscribe?value=true&sender=@item.Receiver&receiver=@item.Sender&id=@item.Trainingid">Accept</a>
+                                }
+                                @if (item.Groupid != Guid.Empty)
+                                {
+                                    <a class="btn btn-primary" href="AcceptGroupSubscribe?value=true&sender=@item.Receiver&receiver=@item.Sender&id=@item.Groupid">Accept</a>
+                                }
+                                <a class="btn btn-primary" href="RefuseSubscribe?sender=@item.Receiver&receiver=@item.Sender&id=@item.Id">Refuse</a>
+                            </div>
+                        }
                     </div>
                 }
-                <p>@Html.DisplayFor(modelItem => item.Msg)</p>
+                <p class="col-md-12">@Html.DisplayFor(modelItem => item.Msg)</p>
 
             </div>
+
         }
     </div>
 

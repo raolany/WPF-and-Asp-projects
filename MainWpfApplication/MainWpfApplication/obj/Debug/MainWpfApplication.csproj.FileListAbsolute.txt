@@ -37,3 +37,6 @@ F:\Study\EPAM\MainWpfApplication\MainWpfApplication\obj\Debug\View\SearchPanels\
 F:\Study\EPAM\MainWpfApplication\MainWpfApplication\obj\Debug\View\SearchPanels\TrainingSearchPanel.baml
 F:\Study\EPAM\MainWpfApplication\MainWpfApplication\obj\Debug\View\NotificationWindow.g.cs
 F:\Study\EPAM\MainWpfApplication\MainWpfApplication\obj\Debug\View\NotificationWindow.baml
+F:\GitHub\WebAspProject\MainWpfApplication\MainWpfApplication\bin\Debug\MainWpfApplication.exe.config
+F:\GitHub\WebAspProject\MainWpfApplication\MainWpfApplication\obj\Debug\MainWpfApplication.exe
+F:\GitHub\WebAspProject\MainWpfApplication\MainWpfApplication\obj\Debug\MainWpfApplication.pdb

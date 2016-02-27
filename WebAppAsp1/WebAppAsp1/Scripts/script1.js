@@ -36,6 +36,17 @@
         }
     });
 
+    var check = false;
+    $(".btn_answer, .modal").mouseenter(function () {
+        check = true;
+    });
+    $(".btn_answer, .modal").mouseleave(function () {
+        check = false;
+    });
+    $(".message_container").click(function() {
+        if (!check) readMsg($(this).attr("id"));
+    }); 
+
 });
 $(".training_container").hover(
     function () {
@@ -119,6 +130,8 @@ window.onload = new function() {
     if (bh < dh) {
         $("footer").css("margin-top", (dh - bh)+25);
     }
+
+    msgCount();
 };
 
 function goTrainerA(id) {
@@ -127,4 +140,55 @@ function goTrainerA(id) {
 
 function goGroupA(id) {
     document.location.href = "/Group/Group?id=" + id;
+}
+
+function readMsg(id) {
+    document.location.href = "/Message/ReadMsg?id=" + id;
+}
+
+
+setInterval(msgCount, 5 * 1000);
+function msgCount() {
+    $.ajax({
+        type: "POST",
+        url: "/Message/MessageCount",
+        success: function(c) {
+            document.getElementById("msg_count").innerHTML = c;
+        }
+    });
+}
+
+setInterval(newmsgs, 5 * 1000);
+function newmsgs() {
+    $.ajax({
+        type: "POST",
+        url: "/Message/NewMessages",
+        success: function (msg) {
+            var m = JSON.parse(msg);
+            console.log(m);
+            if(m.Msg !== "")
+            {
+                var n = noty({
+                    text: "<h5>Message</h5>"+m.Msg,
+                    layout: "bottomRight",
+                    type: "alert",
+                    animation: {
+                        open: { height: 'toggle' }, // jQuery animate function property object
+                        close: { height: 'toggle' }, // jQuery animate function property object
+                        easing: 'swing', // easing
+                        speed: 500 // opening & closing animation speed
+                    },
+                    timeout: 2000,
+                    callback: {
+                        onShow: function () { },
+                        afterShow: function () { },
+                        onClose: function () { },
+                        afterClose: function () { },
+                        onCloseClick: function () { document.location.href = "/Message/Messages"; }
+                    }
+                });
+                n.css("background", "#bcc8c9");
+            }
+        }
+    });
 }

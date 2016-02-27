@@ -22,7 +22,20 @@ namespace WebAppAsp1.Controllers
             if (type == "mygroups")
             {
                 ViewData["my"] = "active";
-                groups = db.Group.Where(gr => (gr.Trainer == user.Trainer));
+                if (User.IsInRole("Trainer"))
+                {
+                    groups = db.Group.Where(gr => (gr.Trainer == user.Trainer));
+                }
+                else
+                {
+                    var tmp = db.GroupClient.Where(gc => (gc.Clientid == user.Client));
+                    var lst = new List<Group>();
+                    foreach (GroupClient grcl in tmp)
+                    {
+                        lst.Add(db.Group.First(g => g.Id == grcl.Groupid));
+                    }
+                    groups = lst;
+                }
             }
             else if (type == "allgroups")
             {

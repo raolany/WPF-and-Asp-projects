@@ -184,9 +184,11 @@
     <Compile Include="Models\EntetiesModel\TrainingModels.cs" />
     <Compile Include="Models\Entities\Client.cs" />
     <Compile Include="Models\Entities\Group.cs" />
+    <Compile Include="Models\Entities\GroupClient.cs" />
     <Compile Include="Models\Entities\Notification.cs" />
     <Compile Include="Models\Entities\Notificationtype.cs" />
     <Compile Include="Models\Entities\Training.cs" />
+    <Compile Include="Models\Entities\TrainingClient.cs" />
     <Compile Include="Models\Entities\User.cs" />
     <Compile Include="Models\Entities\Trainer.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -229,6 +231,7 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.noty.packaged.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -283,6 +286,7 @@
     <Content Include="Views\Group\Group.cshtml" />
     <Content Include="Views\Profile\Trainer.cshtml" />
     <Content Include="Views\Message\Messages.cshtml" />
+    <Content Include="Views\Shared\MessageCountPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

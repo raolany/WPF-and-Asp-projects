@@ -46,7 +46,10 @@ else
                     <div class="row">
                         <h3 class="list-group-item-heading col-md-9">@Html.DisplayFor(modelItem => item.Name)</h3>
                         <div class="group_edit hidden col-md-3 text-right">
-                            <a href="/Group/EditGroup?groupId=@item.Id" class="btn btn-primary @ViewData["edit_btn"]">Edit</a>
+                            @if (User.IsInRole("Trainer"))
+                            {
+                                <a href="/Group/EditGroup?groupId=@item.Id" class="btn btn-primary @ViewData["edit_btn"]">Edit</a>
+                            }
                         </div>
                     </div>
                     <div class="list-group-item-text">
@@ -79,7 +82,10 @@ else
                         <div class="row">
                             <h3 class="list-group-item-heading col-md-9">@Html.DisplayFor(modelItem => item.Name)</h3>
                             <div class="group_edit hidden col-md-3 text-right">
-                                <a href="/Group/EditGroup?groupId=@item.Id" class="btn btn-primary @ViewData["edit_btn"]">Edit</a>
+                                @if (User.IsInRole("Trainer"))
+                                {
+                                    <a href="/Group/EditGroup?groupId=@item.Id" class="btn btn-primary @ViewData["edit_btn"]">Edit</a>
+                                }
                             </div>
                         </div>
                         <div class="list-group-item-text">
@@ -105,7 +111,10 @@ else
                         <div class="row">
                             <h3 class="list-group-item-heading col-md-9">@Html.DisplayFor(modelItem => item.Name)</h3>
                             <div class="group_edit hidden col-md-3 text-right">
-                                <a href="/Group/EditGroup?groupId=@item.Id" class="btn btn-primary @ViewData["edit_btn"]">Edit</a>
+                                @if (User.IsInRole("Trainer"))
+                                {
+                                    <a href="/Group/EditGroup?groupId=@item.Id" class="btn btn-primary @ViewData["edit_btn"]">Edit</a>
+                                }
                             </div>
                         </div>
                         <div class="list-group-item-text">
