@@ -74,7 +74,7 @@ else
         }
         else
         {
-            for (int i = 0; i < Model.ToList().Count() - 1; i++)
+            for (int i = 0; i < Model.ToList().Count(); i++)
             {
                 <div class="row" style="padding-left: 30px; padding-right: 30px;">
                     @{
@@ -109,38 +109,40 @@ else
 
                     </div>
 
-
-                    @{
-                        i++;
-                        item = Model.ToList()[i];
-                    }
-                    <div class="list-group-item col-md-12 training_container" onclick="goTrainerA('@item.Id');" style="cursor: pointer">
-                        <div class="row">
-                            <h3 class="list-group-item-heading col-md-9">@Html.DisplayFor(modelItem => item.Name)</h3>
-                            <div class="training_edit hidden col-md-3 text-right">
-                                @if (User.IsInRole("Trainer"))
-                                {
-                                    <a href="/Training/EditTraining?trainingId=@item.Id" class="btn btn-primary @ViewData["edit_btn"]">Edit</a>
-                                }
+                    @if (i + 1 < Model.Count())
+                    {
+                        {
+                            i++;
+                            item = Model.ToList()[i];
+                        }
+                        <div class="list-group-item col-md-12 training_container" onclick="goTrainerA('@item.Id');" style="cursor: pointer">
+                            <div class="row">
+                                <h3 class="list-group-item-heading col-md-9">@Html.DisplayFor(modelItem => item.Name)</h3>
+                                <div class="training_edit hidden col-md-3 text-right">
+                                    @if (User.IsInRole("Trainer"))
+                                    {
+                                        <a href="/Training/EditTraining?trainingId=@item.Id" class="btn btn-primary @ViewData["edit_btn"]">Edit</a>
+                                    }
+                                </div>
                             </div>
-                        </div>
-                        <div class="list-group-item-text">
-                            <p>
-                                Trainer : <b><a href="/Profile/Trainer?id=@item.Trainer">@Html.DisplayFor(modelItem => item.TrainerName)</a></b>
-                            </p>
-                            <p>
-                                Training time : <b>@Html.DisplayFor(modelItem => item.Hours)</b> min
-                            </p>
-                            <p>
-                                Minimum age :<b> @Html.DisplayFor(modelItem => item.Minage)</b>
-                            </p>
-                            <p>
-                                Price : <b>@Html.DisplayFor(modelItem => item.Price)</b>
-                            </p>
-                            <p>@Html.DisplayFor(modelItem => item.Description)</p>
-                        </div>
+                            <div class="list-group-item-text">
+                                <p>
+                                    Trainer : <b><a href="/Profile/Trainer?id=@item.Trainer">@Html.DisplayFor(modelItem => item.TrainerName)</a></b>
+                                </p>
+                                <p>
+                                    Training time : <b>@Html.DisplayFor(modelItem => item.Hours)</b> min
+                                </p>
+                                <p>
+                                    Minimum age :<b> @Html.DisplayFor(modelItem => item.Minage)</b>
+                                </p>
+                                <p>
+                                    Price : <b>@Html.DisplayFor(modelItem => item.Price)</b>
+                                </p>
+                                <p>@Html.DisplayFor(modelItem => item.Description)</p>
+                            </div>
 
-                    </div>
+                        </div>
+                    }
 
                 </div>
             }

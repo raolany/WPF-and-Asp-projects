@@ -86,17 +86,17 @@ namespace WebAppAsp1.Models
 
         [DisplayName("Name")]
         [Required(ErrorMessage = "Name is required")]
-        [StringLength(50, MinimumLength = 5, ErrorMessage = "Name length must be between {2} and {1}")]
+        [StringLength(50, MinimumLength = 2, ErrorMessage = "Name length must be between {2} and {1}")]
         public string Name { get; set; }
 
         [DisplayName("Surname")]
         [Required(ErrorMessage = "Surname is required")]
-        [StringLength(50, MinimumLength = 5, ErrorMessage = "Surname length must be between {2} and {1}")]
+        [StringLength(50, MinimumLength = 2, ErrorMessage = "Surname length must be between {2} and {1}")]
         public string Surname { get; set; }
 
         [DisplayName("Patronymicname")]
         [Required(ErrorMessage = "Patronymicname is required")]
-        [StringLength(50, MinimumLength = 5, ErrorMessage = "Patronymicname length must be between {2} and {1}")]
+        [StringLength(50, MinimumLength = 2, ErrorMessage = "Patronymicname length must be between {2} and {1}")]
         public string Patronymicname { get; set; }
 
         [DisplayName("Age")]
@@ -218,17 +218,17 @@ namespace WebAppAsp1.Models
 
         [DisplayName("Name")]
         [Required(ErrorMessage = "Name is required")]
-        [StringLength(50, MinimumLength = 5, ErrorMessage = "Name length must be between {2} and {1}")]
+        [StringLength(50, MinimumLength = 2, ErrorMessage = "Name length must be between {2} and {1}")]
         public string Name { get; set; }
 
         [DisplayName("Surname")]
         [Required(ErrorMessage = "Surname is required")]
-        [StringLength(50, MinimumLength = 5, ErrorMessage = "Surname length must be between {2} and {1}")]
+        [StringLength(50, MinimumLength = 2, ErrorMessage = "Surname length must be between {2} and {1}")]
         public string Surname { get; set; }
 
         [DisplayName("Patronymicname")]
         [Required(ErrorMessage = "Patronymicname is required")]
-        [StringLength(50, MinimumLength = 5, ErrorMessage = "Patronymicname length must be between {2} and {1}")]
+        [StringLength(50, MinimumLength = 2, ErrorMessage = "Patronymicname length must be between {2} and {1}")]
         public string Patronymicname { get; set; }
 
         [DisplayName("Age")]

@@ -25,7 +25,7 @@ namespace WebAppAsp1.Models.EntetiesModel
                     Description = training.Description,
                     Price = training.Price,
                     Minage = training.Minage,
-                    Hours = training.Minage
+                    Hours = training.Hours
                 });
             }
 
