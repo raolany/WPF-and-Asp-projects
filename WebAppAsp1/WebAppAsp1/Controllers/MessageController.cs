@@ -223,5 +223,19 @@ namespace WebAppAsp1.Controllers
             db.SaveChanges();
             return obj;
         }
+
+        public ActionResult SendHelpMsg(string msg)
+        {
+            var db = HttpContext.GetOwinContext().GetUserManager<ApplicationDbContext>();
+            var id = User.Identity.GetUserId();
+            var sender = db.User.First(u => (u.ApplicationUserId == id));
+            var admin = db.User.First(u => (u.Login == "admin@admin.com"));
+            
+            var ntf = NotifificationModel.InitNtfNotifificationFromModel(sender.Id, admin.Id, msg, db);
+            db.Notification.Add(ntf);
+            db.SaveChanges();
+            
+            return RedirectToAction("Index", "Home");
+        }
     }
 }

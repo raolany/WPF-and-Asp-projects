@@ -75,7 +75,9 @@ namespace WebAppAsp1.Controllers
                 db.SaveChanges();
                 return Redirect("Trainings?type=mytrainings");
             }
-            return HttpNotFound();
+            TempData["mode"] = "create";
+            ModelState.AddModelError("", "Model is not valid");
+            return View(training);
         }
 
         [HttpGet]
@@ -107,7 +109,10 @@ namespace WebAppAsp1.Controllers
                 db.SaveChanges();
                 return Redirect("Trainings?type=mytrainings");
             }
-            return HttpNotFound();
+
+            TempData["mode"] = "edit";
+            ModelState.AddModelError("", "Model is not valid");
+            return View("CreateTraining", training);
         }
 
         public ActionResult Training(Guid id)

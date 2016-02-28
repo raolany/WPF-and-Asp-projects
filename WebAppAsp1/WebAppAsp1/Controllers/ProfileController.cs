@@ -53,24 +53,28 @@ namespace WebAppAsp1.Controllers
         [HttpPost]
         public ActionResult EditProfile(ProfileViewModel model)
         {
-            var id = User.Identity.GetUserId();
-            var db = HttpContext.GetOwinContext().GetUserManager<ApplicationDbContext>();
-            var myuser = db.User.First(u => (u.ApplicationUserId == id));
-            if (User.IsInRole("Client"))
+            if (ModelState.IsValid)
             {
-                var profile = db.Client.First(t => (t.Id == myuser.Client));
-                ProfileViewModel.InitFromModel(model, profile);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                var id = User.Identity.GetUserId();
+                var db = HttpContext.GetOwinContext().GetUserManager<ApplicationDbContext>();
+                var myuser = db.User.First(u => (u.ApplicationUserId == id));
+                if (User.IsInRole("Client"))
+                {
+                    var profile = db.Client.First(t => (t.Id == myuser.Client));
+                    ProfileViewModel.InitFromModel(model, profile);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                if (User.IsInRole("Trainer"))
+                {
+                    var profile = db.Trainer.First(t => (t.Id == myuser.Trainer));
+                    ProfileViewModel.InitFromModel(model, profile);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
             }
-            if (User.IsInRole("Trainer"))
-            {
-                var profile = db.Trainer.First(t => (t.Id == myuser.Trainer));
-                ProfileViewModel.InitFromModel(model, profile);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View();
+            ModelState.AddModelError("", "Model is not valid");
+            return View(model);
         }
 
         public ActionResult Trainer(Guid id)

@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Text.RegularExpressions;
 using WebAppAsp1.Models.Entities;
 
 namespace WebAppAsp1.Models
@@ -82,29 +84,43 @@ namespace WebAppAsp1.Models
         [Compare("Password", ErrorMessage = "Пароль и его подтверждение не совпадают.")]
         public string ConfirmPassword { get; set; }
 
-        [Required]
-        [StringLength(25, ErrorMessage = "Name length must be between {0} and {2} ", MinimumLength = 3)]
+        [DisplayName("Name")]
+        [Required(ErrorMessage = "Name is required")]
+        [StringLength(50, MinimumLength = 5, ErrorMessage = "Name length must be between {2} and {1}")]
         public string Name { get; set; }
 
-        [Required]
+        [DisplayName("Surname")]
+        [Required(ErrorMessage = "Surname is required")]
+        [StringLength(50, MinimumLength = 5, ErrorMessage = "Surname length must be between {2} and {1}")]
         public string Surname { get; set; }
 
-        [Required]
+        [DisplayName("Patronymicname")]
+        [Required(ErrorMessage = "Patronymicname is required")]
+        [StringLength(50, MinimumLength = 5, ErrorMessage = "Patronymicname length must be between {2} and {1}")]
         public string Patronymicname { get; set; }
 
-        [Required]
+        [DisplayName("Age")]
+        [Required(ErrorMessage = "Age is required")]
+        [Range(1, 100, ErrorMessage = "Age must be between {1} and {2}")]
         public int Age { get; set; }
 
         [Required]
         public string Gender { get; set; }
 
-        [Required]
+        [DisplayName("City")]
+        [Required(ErrorMessage = "City is required")]
+        [StringLength(50, MinimumLength = 2, ErrorMessage = "City length must be between {2} and {1}")]
         public string City { get; set; }
 
-        [Required]
+        [DisplayName("Address")]
+        [Required(ErrorMessage = "Address is required")]
+        [StringLength(250, MinimumLength = 5, ErrorMessage = "Address length must be between {2} and {1}")]
         public string Address { get; set; }
 
-        [Required]
+
+        [DisplayName("Phone")]
+        [Required(ErrorMessage = "Phone is required")]
+        [RegularExpression("[0-9]{7}", ErrorMessage = "It is not a Phone")]
         public string Phone { get; set; }
 
         [Required]
@@ -200,28 +216,43 @@ namespace WebAppAsp1.Models
             return profile;
         }
 
-        [Required]
+        [DisplayName("Name")]
+        [Required(ErrorMessage = "Name is required")]
+        [StringLength(50, MinimumLength = 5, ErrorMessage = "Name length must be between {2} and {1}")]
         public string Name { get; set; }
 
-        [Required]
+        [DisplayName("Surname")]
+        [Required(ErrorMessage = "Surname is required")]
+        [StringLength(50, MinimumLength = 5, ErrorMessage = "Surname length must be between {2} and {1}")]
         public string Surname { get; set; }
 
-        [Required]
+        [DisplayName("Patronymicname")]
+        [Required(ErrorMessage = "Patronymicname is required")]
+        [StringLength(50, MinimumLength = 5, ErrorMessage = "Patronymicname length must be between {2} and {1}")]
         public string Patronymicname { get; set; }
 
-        [Required]
+        [DisplayName("Age")]
+        [Required(ErrorMessage = "Age is required")]
+        [Range(1, 100, ErrorMessage = "Age must be between {1} and {2}")]
         public int Age { get; set; }
 
-        [Required]
+        [DisplayName("Gender")]
+        [Required(ErrorMessage = "Gender is required")]
         public string Gender { get; set; }
 
-        [Required]
+        [DisplayName("City")]
+        [Required(ErrorMessage = "City is required")]
+        [StringLength(50, MinimumLength = 2, ErrorMessage = "City length must be between {2} and {1}")]
         public string City { get; set; }
 
-        [Required]
+        [DisplayName("Address")]
+        [Required(ErrorMessage = "Address is required")]
+        [StringLength(250, MinimumLength = 5, ErrorMessage = "Address length must be between {2} and {1}")]
         public string Address { get; set; }
 
-        [Required]
+        [DisplayName("Phone")]
+        [Required(ErrorMessage = "Phone is required")]
+        [RegularExpression("[0-9]{7}", ErrorMessage = "It is not a Phone")]
         public string Phone { get; set; }
     }
 }

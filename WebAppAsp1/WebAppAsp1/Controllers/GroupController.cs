@@ -71,11 +71,12 @@ namespace WebAppAsp1.Controllers
         [HttpPost]
         public ActionResult CreateGroup(GroupModel model)
         {
+            var db = HttpContext.GetOwinContext().GetUserManager<ApplicationDbContext>();
+            var id = User.Identity.GetUserId();
+            var user = db.User.First(t => (t.ApplicationUserId == id));
+
             if (ModelState.IsValid)
             {
-                var id = User.Identity.GetUserId();
-                var db = HttpContext.GetOwinContext().GetUserManager<ApplicationDbContext>();
-                var user = db.User.First(t => (t.ApplicationUserId == id));
 
                 if (user.Trainer != null)
                 {
@@ -95,7 +96,11 @@ namespace WebAppAsp1.Controllers
                     return Redirect("Groups?type=mygroups");
                 }
             }
-            return HttpNotFound();
+            var trainings = db.Training.Where(tr => (tr.Trainer == user.Trainer));
+            model.AllTrainings = ShortTrainingModel.Init(trainings);
+            TempData["mode"] = "create";
+            ModelState.AddModelError("", "Model is not valid");
+            return View(model);
         }
 
         [HttpGet]
@@ -125,9 +130,11 @@ namespace WebAppAsp1.Controllers
         [HttpPost]
         public ActionResult EditGroup(GroupModel model, Guid id)
         {
+            var db = HttpContext.GetOwinContext().GetUserManager<ApplicationDbContext>();
+            var _id = User.Identity.GetUserId();
+            var user = db.User.First(t => (t.ApplicationUserId == _id));
             if (ModelState.IsValid)
             {
-                var db = HttpContext.GetOwinContext().GetUserManager<ApplicationDbContext>();
                 var gr = db.Group.First(g => (g.Id == id));
                 gr.Name = model.Name;
                 gr.Clientmax = model.Clientmax;
@@ -136,7 +143,11 @@ namespace WebAppAsp1.Controllers
                 db.SaveChanges();
                 return Redirect("Groups?type=mygroups");
             }
-            return HttpNotFound();
+            var trainings = db.Training.Where(tr => (tr.Trainer == user.Trainer));
+            model.AllTrainings = ShortTrainingModel.Init(trainings);
+            TempData["mode"] = "edit";
+            ModelState.AddModelError("", "Model is not valid");
+            return View("CreateGroup", model);
         }
 
         public ActionResult Group(Guid id)

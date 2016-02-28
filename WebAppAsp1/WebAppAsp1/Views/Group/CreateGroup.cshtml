@@ -15,7 +15,15 @@
         ViewData["heading"] = "edit group";
         ViewData["btn"] = "Save";
     }
-    var list = Model.AllTrainings;
+    ICollection<ShortTrainingModel> list = null;
+    try
+    {
+        list = Model.AllTrainings;
+    }
+    catch
+    {
+
+    }
 }
 
 @if (list == null)

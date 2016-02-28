@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using WebAppAsp1.Models.Entities;
@@ -67,24 +69,36 @@ namespace WebAppAsp1.Models.EntetiesModel
 
         public Guid Id { get; set; }
 
+        [DisplayName("Name")]
+        [Required(ErrorMessage = "Group name is required")]
+        [StringLength(50, MinimumLength = 5, ErrorMessage = "Name length must be between 5 and 50")]
         public string Name { get; set; }
 
         public Guid Trainer { get; set; }
 
-        public String TrainerName { get; set; }
+        [DisplayName("Trainer name")]
+        public string TrainerName { get; set; }
 
         public Guid Training { get; set; }
 
-        public String TrainingName { get; set; }
+        [DisplayName("Training name")]
+        public string TrainingName { get; set; }
 
+        [DisplayName("Max number of clients")]
+        [Required(ErrorMessage = "Max number of clients is required")]
+        [Range(0, 100, ErrorMessage = "Max number of clients must be beetwen 0 and 100 minuts")]
         public int Clientmax { get; set; }
 
         public int Clientsnow { get; set; }
 
+        [DisplayName("Description")]
+        [Required(ErrorMessage = "Description is required")]
+        [StringLength(300, MinimumLength = 5, ErrorMessage = "Description must be between 5 and 300")]
         public string Description { get; set; }
 
         public ICollection<ShortTrainingModel> AllTrainings { get; set; }
 
+        [Required(ErrorMessage = "Training is required")]
         public Guid SelectedTraining { get; set; }
     }
 

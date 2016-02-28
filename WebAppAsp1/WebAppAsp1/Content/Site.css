@@ -5,10 +5,6 @@
     -o-background-size: cover;
     background-size: cover;
 }
-.logo {
-
-    //background: url(~/img/logo1.png);
-}
 body header {
     background: #8bc5c7;
     padding: 40px;
@@ -32,6 +28,9 @@ body header a {
 }
 body header .form-search {
     width: 275px;
+}
+.header-nav {
+    padding: 25px;
 }
 
 /*navigation*/

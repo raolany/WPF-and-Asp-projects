@@ -23,16 +23,14 @@ else
 </head>
 <body>
 
-    <header>
+    <header style="padding: 20px">
         <div class="container">
             <div class="col-md-6">
-                @*@Html.ActionLink("My project logo", "Index", "Home")*@
-                @*<img src="~/img/logo1.png"/>*@
                 <div class="">
-                    <img src="~/img/logo3.png"/>
+                    <a href="/Home/Index"><img src="~/img/logo4.png"/></a>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 header-nav">
                 <div class="row pull-right">
                     <div class="row" style="padding-bottom: 10px; padding-right: 5px;">
                         @Html.Partial("_LoginPartial")

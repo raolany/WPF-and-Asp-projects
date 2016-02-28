@@ -24,7 +24,7 @@ else
             {
                 ViewData["status"] = "";
             }
-            <div class="list-group-item message_container @ViewData["status"]" id="@item.Id" @*onclick="readMsg('@item.Id')"*@>
+            <div class="list-group-item message_container @ViewData["status"]" id="@item.Id">
                 @if (item.Type == "Message")
                 {
                     <div class="row">
