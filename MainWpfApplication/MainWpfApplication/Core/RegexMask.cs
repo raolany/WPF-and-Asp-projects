@@ -9,7 +9,8 @@ namespace MainWpfApplication.Model
     public class RegexMask
     {
         public static string FioMask = "^[A-Z]{1}[a-z]{1,20}$";
-        public static string LoginMask = "^[(a-z)|(0-9)]{3,20}$";
+        //public static string LoginMask = "^[(a-z)|(0-9)]{3,20}$";
+        public static string LoginMask = "[a-z@.0-9]";
         public static string PasswordMask = "^[(a-z)|(0-9)]{3,20}$";
         public static string AddressMask = "^[A-Za-z\\d,.\\s]+$";
         public static string PhoneMask = "^[0-9]{7}$";

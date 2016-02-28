@@ -78,6 +78,16 @@ namespace MainWpfApplication.Model
             }
             set { _row["Status"] = value; }
         }
+        public bool Sended
+        {
+            get
+            {
+                if (bool.Parse(_row["Sended"].ToString()) == true)
+                    return false;
+                return true;
+            }
+            set { _row["Sended"] = value; }
+        }
         public Guid TrainingId
         {
             get

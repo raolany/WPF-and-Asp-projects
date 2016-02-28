@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-F:\Study\EPAM\MainWpfApplication\MainWpfApplication\obj\Debug\
+F:\GitHub\WebAspProject\MainWpfApplication\MainWpfApplication\obj\Debug\
 MainWpfApplication
 none
 false
 DEBUG;TRACE
-F:\Study\EPAM\MainWpfApplication\MainWpfApplication\App.xaml
+F:\GitHub\WebAspProject\MainWpfApplication\MainWpfApplication\App.xaml
 10-1083914112
 
 53-129856641
-18-610086576
+181400157079
 View\CreateTrainingWindow.xaml;View\EditUserProfileWindow.xaml;View\GroupWindow.xaml;View\MainWindow.xaml;View\NotificationWindow.xaml;View\RegisterWindow.xaml;View\SearchPanels\GroupSearchPanel.xaml;View\SearchPanels\TrainerSearchPnl.xaml;View\SearchPanels\TrainingSearchPanel.xaml;View\VerificationWindow.xaml;
 
 False

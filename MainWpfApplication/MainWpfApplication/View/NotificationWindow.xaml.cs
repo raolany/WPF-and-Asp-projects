@@ -86,6 +86,7 @@ namespace MainWpfApplication.View
                 }
             }
             _notificationVm.Time = DateTime.Now.ToString("hh:mm:ss tt dd-MMMM-yyyy", CultureInfo.InvariantCulture);
+            _notificationVm.Notification.Sended = false;
             _notificationVm.Notification.Save();
             MessageBox.Show("Message sent");
             Close();

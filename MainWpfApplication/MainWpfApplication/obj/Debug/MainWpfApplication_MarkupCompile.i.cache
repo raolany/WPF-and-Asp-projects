@@ -16,5 +16,5 @@ F:\GitHub\WebAspProject\MainWpfApplication\MainWpfApplication\App.xaml
 181400157079
 View\CreateTrainingWindow.xaml;View\EditUserProfileWindow.xaml;View\GroupWindow.xaml;View\MainWindow.xaml;View\NotificationWindow.xaml;View\RegisterWindow.xaml;View\SearchPanels\GroupSearchPanel.xaml;View\SearchPanels\TrainerSearchPnl.xaml;View\SearchPanels\TrainingSearchPanel.xaml;View\VerificationWindow.xaml;
 
-True
+False
 
